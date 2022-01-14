@@ -49,7 +49,6 @@ public class BallCS : MonoBehaviour
 
             if (collision.gameObject.GetComponent<BlockCS>())
             {
-                Debug.Log("부셔져라 블록블록");
                 BlockCS BObj = collision.gameObject.GetComponent<BlockCS>();
                 if (BObj.bState != BlockManager.BlockState.Wall)
                 {

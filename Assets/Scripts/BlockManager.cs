@@ -93,6 +93,8 @@ public class BlockManager : MonoBehaviour
     JsonData BlockData;
 
     float BlockWidth, BlockHeight;
+
+    int StageNum = -1;
     #endregion
 
     #region Function
@@ -142,6 +144,15 @@ public class BlockManager : MonoBehaviour
         {
             EffectSlider.value = 0;
             masterMixer.SetFloat("Effect", 0);
+        }
+
+        if(PlayerPrefs.HasKey("Stage"))
+        {
+            StageNum = PlayerPrefs.GetInt("Stage");
+        }
+        else
+        {
+            StageNum = -1;
         }
 
         CreateBlock();
@@ -239,6 +250,12 @@ public class BlockManager : MonoBehaviour
     public void CreateBlock()
     {
         int r = Random.Range(0, BlockData.Count);
+        while (r == StageNum)
+        {
+            r = Random.Range(0, BlockData.Count);
+        }
+        StageNum = r;
+        PlayerPrefs.SetInt("Stage", StageNum);
         BlockSpaceWidth = int.Parse(BlockData[r]["width"].ToString());
         BlockSpaceHeight = int.Parse(BlockData[r]["height"].ToString());
 

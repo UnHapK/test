@@ -13,7 +13,6 @@ public class BlockCS : MonoBehaviour
     public void BlockStateSetting(int i)
     {
         bState = (BlockManager.BlockState)i;
-        Debug.Log(bState);
 
         BlockManager.BInstance.BlockCount++;
         this.gameObject.GetComponent<Image>().color = BlockManager.BInstance.BlockColor[i];
